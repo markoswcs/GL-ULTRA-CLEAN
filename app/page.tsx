@@ -843,7 +843,7 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="bg-slate-950 text-slate-400 py-14 border-t border-slate-800">
+      <footer className="bg-slate-950 text-slate-400 pt-14 pb-28 sm:pb-20 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-slate-800">
             {/* Logo */}
@@ -891,8 +891,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <p>
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 sm:pr-24">
+            <p className="text-center sm:text-left">
               © {new Date().getFullYear()} GL Ultra Clean. Todos os direitos reservados. • Desenvolvido por{" "}
               <a
                 href="https://www.instagram.com/markos.jpeg/?hl=pt-br"
@@ -903,34 +903,31 @@ export default function Home() {
                 @markos.jpeg
               </a>
             </p>
-            <p>Brasília-DF e entorno-GO (Valparaíso)</p>
+            <p className="text-center sm:text-right text-slate-400">
+              Brasília-DF e entorno-GO (Valparaíso)
+            </p>
           </div>
         </div>
       </footer>
 
       {/* ─── FLOATING WHATSAPP BUTTON ─── */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-        {/* Helper tooltip */}
-        <a
-          href={getWhatsAppUrl("Olá! Gostaria de tirar uma dúvida sobre higienização de estofados.")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:flex items-center gap-2 bg-white text-slate-800 text-xs font-bold px-4 py-2.5 rounded-full shadow-xl border border-slate-200 hover:text-[#0077D4] transition-all hover:scale-105"
-        >
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+        {/* Tooltip shown on hover only */}
+        <span className="hidden sm:inline-flex opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none items-center gap-2 bg-white text-slate-800 text-xs font-bold px-4 py-2.5 rounded-full shadow-2xl border border-slate-200 whitespace-nowrap">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>Orçamento Rápido no WhatsApp</span>
-        </a>
+        </span>
 
         {/* Pulse button */}
         <a
           href={getWhatsAppUrl("Olá! Gostaria de um orçamento para estofados.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-16 h-16 rounded-full btn-whatsapp-primary flex items-center justify-center whatsapp-pulse shadow-2xl transition-transform hover:scale-110 active:scale-95"
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full btn-whatsapp-primary flex items-center justify-center whatsapp-pulse shadow-2xl transition-transform hover:scale-110 active:scale-95"
           aria-label="Abrir WhatsApp"
           title="Fale conosco no WhatsApp"
         >
-          <WhatsAppSvg className="w-8 h-8 fill-white" />
+          <WhatsAppSvg className="w-7 h-7 sm:w-8 sm:h-8 fill-white" />
         </a>
       </div>
     </div>
