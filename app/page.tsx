@@ -892,7 +892,17 @@ export default function Home() {
           </div>
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <p>© {new Date().getFullYear()} GL Ultra Clean. Todos os direitos reservados.</p>
+            <p>
+              © {new Date().getFullYear()} GL Ultra Clean. Todos os direitos reservados. • Desenvolvido por{" "}
+              <a
+                href="https://www.instagram.com/markos.jpeg/?hl=pt-br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-300 hover:text-[#29ABE2] transition-colors font-medium underline underline-offset-2"
+              >
+                @markos.jpeg
+              </a>
+            </p>
             <p>Brasília-DF e entorno-GO (Valparaíso)</p>
           </div>
         </div>
