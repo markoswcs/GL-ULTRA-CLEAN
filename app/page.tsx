@@ -13,8 +13,9 @@ function getWhatsAppUrl(customText?: string) {
 
 export default function Home() {
   // Simulator State
-  const [selectedService, setSelectedService] = useState("Limpeza Residencial");
-  const [selectedType, setSelectedType] = useState("Apartamento");
+  const [selectedService, setSelectedService] = useState("Sofá");
+  const [selectedAction, setSelectedAction] = useState("Higienização + Impermeabilização");
+  const [location, setLocation] = useState("Brasília / DF");
   const [notes, setNotes] = useState("");
 
   // Mobile Menu State
@@ -25,29 +26,25 @@ export default function Home() {
 
   const handleSimulate = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Gostaria de um orçamento para:\n• Serviço: ${selectedService}\n• Tipo de Imóvel/Local: ${selectedType}${notes ? `\n• Detalhes: ${notes}` : ""}`;
+    const msg = `Olá! Gostaria de um orçamento para:\n• Item: ${selectedService}\n• Serviço Desejado: ${selectedAction}\n• Localização: ${location}${notes ? `\n• Detalhes/Modelo: ${notes}` : ""}`;
     window.open(getWhatsAppUrl(msg), "_blank");
   };
 
+  // Serviços 100% fiéis ao Instagram (@gl_ultraclean):
+  // Destaques: Sofá, Colchão, Bancos, Cadeira
+  // Bio: Higienização e Impermeabilização | Saúde é conforto para a sua família
   const services = [
     {
-      id: "residencial",
-      title: "Limpeza Residencial Completa",
-      badge: "Mais Pedido",
-      desc: "Higienização profunda e detalhada para apartamentos e casas. Pisos, móveis, banheiros, cozinha e áreas comuns impecáveis.",
-      items: ["Limpeza pesada ou de manutenção", "Desinfecção de banheiros e cozinha", "Eliminação de pó em todos os cantos", "Produtos com cheirinho suave e duradouro"],
-      icon: (
-        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-      ),
-    },
-    {
-      id: "estofados",
-      title: "Higienização de Estofados & Colchões",
-      badge: "Saúde & Higiene",
-      desc: "Extração por sucção profunda que remove manchas, sujeiras impregnadas, ácaros, fungos e odores desagradáveis de sofás e colchões.",
-      items: ["Sofás, poltronas e cadeiras de jantar", "Colchões e cabeceiras estofadas", "Eliminação de ácaros e bactérias", "Secagem rápida com produto profissional"],
+      id: "sofa",
+      title: "Higienização de Sofás",
+      badge: "Destaque Principal",
+      desc: "Limpeza profunda e desinfecção de sofás retráteis, de canto, 2 e 3 lugares em tecidos como linho, suede, veludo e couro.",
+      items: [
+        "Remoção de manchas, sujeiras e encardidos",
+        "Eliminação profunda de odores e suor",
+        "Extração de ácaros, fungos e bactérias",
+        "Secagem rápida com produto profissional",
+      ],
       icon: (
         <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -55,51 +52,88 @@ export default function Home() {
       ),
     },
     {
-      id: "pos-obra",
-      title: "Limpeza Pós-Obra Técnica",
-      badge: "Especialidade",
-      desc: "Remoção criteriosa de resíduos de tinta, rejunte, cimento e poeira fina sem danificar seus porcelanatos, vidros ou acabamentos.",
-      items: ["Eliminação completa da névoa de poeira", "Desincrustação técnica de pisos e rodapés", "Remoção de respingos de tintas e colas", "Ambiente 100% pronto para morar ou inaugurar"],
-      icon: (
-        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      ),
-    },
-    {
-      id: "comercial",
-      title: "Limpeza Comercial & Escritórios",
-      badge: "Empresarial",
-      desc: "Padronização e ambiente impecável para impressionar seus clientes e colaboradores. Lojas, escritórios, consultórios e clínicas.",
-      items: ["Salas de reunião, recepção e estações", "Higienização constante de sanitários", "Horários flexíveis pré e pós expediente", "Emissão de nota e contrato de prestação"],
-      icon: (
-        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-    },
-    {
-      id: "vidros",
-      title: "Limpeza de Vidros, Blindex & Fachadas",
-      badge: "Brilho Cristalino",
-      desc: "Vidros translúcidos sem manchas, estrias ou marcas de dedos. Tratamento hidro-repelente para manter a transparência por muito mais tempo.",
-      items: ["Janelas residenciais e portas blindex", "Guarda-corpos de varandas e sacadas", "Fachadas envidraçadas comerciais", "Técnica profissional que não risca"],
-      icon: (
-        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M12 4v16" />
-        </svg>
-      ),
-    },
-    {
-      id: "forros",
-      title: "Limpeza de Forros, Tetos & Detalhes",
-      badge: "Cuidado Total",
-      desc: "Limpeza especializada para forros de gesso, PVC, madeira e áreas de difícil acesso com equipamentos de segurança adequados.",
-      items: ["Remoção de teias de aranha e fuligem", "Tratamento de manchas superficiais", "Limpeza de luminárias e ventiladores", "Ambiente completamente renovado"],
+      id: "colchao",
+      title: "Higienização de Colchões",
+      badge: "Saúde & Sono",
+      desc: "Tratamento antialérgico intensivo em colchões de solteiro, casal, queen e king. Ideal para quem sofre com rinite e alergias.",
+      items: [
+        "Eliminação de milhares de ácaros acumulados",
+        "Remoção de manchas de suor e líquidos",
+        "Desodorização completa e higienização profunda",
+        "Ambiente saudável para seu descanso",
+      ],
       icon: (
         <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      ),
+    },
+    {
+      id: "bancos",
+      title: "Higienização de Bancos Automotivos",
+      badge: "Veicular",
+      desc: "Higienização e revitalização dos bancos de tecido ou couro do seu carro. Remove sujeira acumulada do dia a dia e odores.",
+      items: [
+        "Bancos dianteiros, traseiros e encostos",
+        "Remoção de manchas de poeira e derramamentos",
+        "Limpeza e hidratação para bancos de couro",
+        "Carro com aspecto de novo e cheiro agradável",
+      ],
+      icon: (
+        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+        </svg>
+      ),
+    },
+    {
+      id: "cadeiras",
+      title: "Higienização de Cadeiras & Poltronas",
+      badge: "Sala & Escritório",
+      desc: "Revitalização de cadeiras de jantar, poltronas decorativas, pufes e cadeiras de escritório. Tecidos renovados sem agredir a fibra.",
+      items: [
+        "Cadeiras de mesa de jantar estofadas",
+        "Poltronas de amamentação e decorativas",
+        "Cadeiras de escritório e recepção",
+        "Tratamento suave para tecidos finos",
+      ],
+      icon: (
+        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 4h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+    {
+      id: "impermeabilizacao",
+      title: "Impermeabilização de Estofados",
+      badge: "Proteção Total",
+      desc: "Blindagem que impede que líquidos (café, suco, vinho, urina de pet) penetrem na espuma. A sujeira fica na superfície e é fácil de limpar.",
+      items: [
+        "Barreira protetora invisível e não tóxica",
+        "Não altera a cor nem a maciez do tecido",
+        "Aumenta drasticamente a vida útil do estofado",
+        "Garantia e laudo de aplicação",
+      ],
+      icon: (
+        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+    },
+    {
+      id: "tapetes",
+      title: "Higienização de Tapetes & Carpetes",
+      badge: "Ar Puro",
+      desc: "Lavagem especializada com extração profunda para eliminar ácaros e pó acumulado na base das fibras de tapetes felpudos ou sintéticos.",
+      items: [
+        "Tapetes persas, sintéticos, shaggy e sisal",
+        "Eliminação profunda de poeira e alérgenos",
+        "Realce das cores originais da peça",
+        "Higienização segura que preserva a trama",
+      ],
+      icon: (
+        <svg className="w-6 h-6 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
       ),
     },
@@ -107,20 +141,24 @@ export default function Home() {
 
   const faqs = [
     {
+      q: "O que a higienização de estofados remove?",
+      a: "Nosso processo de sucção profunda e produtos específicos removem ácaros, bactérias, fungos, manchas recentes e antigas (suor, urina, alimentos, bebidas) e odores desagradáveis, devolvendo o aspecto renovado ao tecido.",
+    },
+    {
+      q: "Quanto tempo demora para o estofado secar?",
+      a: "Com nossos equipamentos de alta extração a vácuo, retiramos cerca de 90% da umidade no próprio procedimento. A secagem completa geralmente ocorre entre 4 a 8 horas, dependendo da ventilação do local.",
+    },
+    {
+      q: "Como funciona a Impermeabilização?",
+      a: "A impermeabilização cria uma película protetora em volta de cada fibra do tecido. Quando cai algum líquido (água, suco, vinho, café), ele não é absorvido pela espuma e fica em forma de gotícula, bastando passar um papel toalha para limpar.",
+    },
+    {
+      q: "Vocês atendem em Valparaíso de Goiás e Brasília?",
+      a: "Sim! Atendemos em domicílio em Valparaíso de Goiás, entorno-GO e em todo o Distrito Federal (Plano Piloto, Águas Claras, Guará, Sudoeste, Noroeste, Taguatinga, Lago Sul/Norte e demais regiões).",
+    },
+    {
       q: "Como faço para solicitar um orçamento?",
-      a: "É super simples e rápido! Basta clicar no botão do WhatsApp em qualquer parte do site, nos dizer qual serviço precisa e a localização em Brasília/DF. Enviamos uma proposta personalizada em minutos.",
-    },
-    {
-      q: "Vocês levam todos os produtos e equipamentos?",
-      a: "Sim! Nossa equipe vai totalmente equipada com maquinário profissional (aspiradores industriais, extratoras, escovas especiais) e produtos de alto rendimento notificados pela Anvisa.",
-    },
-    {
-      q: "Quais regiões de Brasília e do DF vocês atendem?",
-      a: "Atendemos todo o Distrito Federal: Plano Piloto (Asa Sul e Norte), Sudoeste, Noroeste, Águas Claras, Guará, Lago Sul, Lago Norte, Vicente Pires, Taguatinga e demais regiões administrativas.",
-    },
-    {
-      q: "Como funciona o pagamento?",
-      a: "Trabalhamos com total comodidade para você: Pix, cartões de crédito e débito, ou transferência bancária. O pagamento é realizado com segurança após alinhamento do serviço.",
+      a: "É só clicar no botão do WhatsApp! Você nos envia uma foto ou nos diz o modelo do sofá/estofado e a sua localidade, e enviamos o orçamento na hora sem nenhum compromisso.",
     },
   ];
 
@@ -165,20 +203,20 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full text-slate-500 hover:text-[#0077D4] hover:bg-slate-100 transition-colors"
-                title="Siga no Instagram"
+                title="Siga no Instagram @gl_ultraclean"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
               </a>
               <a
-                href={getWhatsAppUrl("Olá! Vim pelo site e gostaria de agendar um orçamento com a GL Ultra Clean.")}
+                href={getWhatsAppUrl("Olá! Gostaria de agendar um orçamento para higienização de estofados com a GL Ultra Clean.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-whatsapp-primary px-5 py-2.5 rounded-full text-sm font-bold inline-flex items-center gap-2"
               >
                 <WhatsAppSvg className="w-4 h-4" />
-                <span>Orçamento WhatsApp</span>
+                <span>Orçamento no WhatsApp</span>
               </a>
             </div>
 
@@ -218,7 +256,7 @@ export default function Home() {
               onClick={() => setMobileMenuOpen(false)}
               className="block py-2 text-base font-semibold text-slate-700 hover:text-[#0077D4]"
             >
-              Serviços
+              Serviços de Higienização
             </a>
             <a
               href="#videos"
@@ -249,7 +287,7 @@ export default function Home() {
                 className="btn-whatsapp-primary w-full py-3 rounded-xl text-center font-bold text-sm flex items-center justify-center gap-2"
               >
                 <WhatsAppSvg className="w-4 h-4" />
-                Falar com Especialista
+                Falar no WhatsApp
               </a>
               <a
                 href={IG_URL}
@@ -271,29 +309,34 @@ export default function Home() {
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               {/* Pill Badge */}
-              <div className="inline-flex items-center gap-2 bg-sky-100/80 border border-sky-200 text-[#0077D4] px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-[#0077D4] animate-ping" />
-                <span>Limpeza Profissional em Brasília & DF</span>
+              <div className="inline-flex items-center gap-2 bg-sky-100/90 border border-sky-200 text-[#0077D4] px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wide">
+                <span>📍</span>
+                <span>Brasília-DF e Entorno-GO • Valparaíso</span>
               </div>
 
               {/* Main Title */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
-                Ambientes impecáveis, higienizados e{" "}
+                Higienização &amp; Impermeabilização de{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077D4] to-[#29ABE2]">
-                  com cheiro de novo.
+                  Estofados.
                 </span>
               </h1>
 
+              {/* Slogan from Instagram bio */}
+              <div className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-[#0077D4]">
+                <span>🍃</span>
+                <span>Saúde e conforto para a sua família</span>
+              </div>
+
               {/* Subtitle */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-                Especialistas em limpeza residencial, comercial, pós-obra, vidros e higienização profunda de estofados.
-                Equipe qualificada, produtos profissionais e total pontualidade para você.
+                Especialistas em <strong>sofás, colchões, bancos automotivos e cadeiras</strong>. Eliminamos ácaros, fungos, bactérias, manchas e odores desagradáveis com produtos de alto padrão e secagem rápida.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <a
-                  href={getWhatsAppUrl("Olá! Gostaria de solicitar um orçamento para limpeza com a GL Ultra Clean.")}
+                  href={getWhatsAppUrl("Olá! Gostaria de um orçamento para higienização/impermeabilização de estofados.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-primary px-8 py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-3 shadow-lg"
@@ -302,45 +345,27 @@ export default function Home() {
                   <span>Pedir Orçamento Grátis</span>
                 </a>
                 <a
-                  href="#videos"
+                  href="#servicos"
                   className="px-6 py-4 rounded-2xl border-2 border-slate-200 hover:border-[#0077D4] bg-white hover:bg-sky-50/50 text-slate-700 hover:text-[#0077D4] font-bold text-base transition-all flex items-center justify-center gap-2"
                 >
-                  <svg className="w-5 h-5 text-[#0077D4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Ver Vídeos de Resultados</span>
+                  <span>Ver Estofados Atendidos ↓</span>
                 </a>
               </div>
 
-              {/* Trust Badges */}
-              <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 font-bold text-sm">
-                    ★
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900 leading-tight">5.0 Estrelas</div>
-                    <div className="text-xs text-slate-500">Avaliação máxima</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm">
-                    ✓
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900 leading-tight">Garantia</div>
-                    <div className="text-xs text-slate-500">100% Satisfação</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-sky-100 flex items-center justify-center text-[#0077D4] font-bold text-sm">
-                    ⚡
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900 leading-tight">Rápido</div>
-                    <div className="text-xs text-slate-500">Resposta imediata</div>
-                  </div>
+              {/* Highlights Pill Badges (from Instagram highlights: Sofá, Colchão, Bancos, Cadeira) */}
+              <div className="pt-6 border-t border-slate-200/80">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
+                  Atendemos em domicílio:
+                </span>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
+                  {["🛋️ Sofás", "🛏️ Colchões", "🚗 Bancos de Carro", "🪑 Cadeiras & Poltronas", "🛡️ Impermeabilização"].map((item) => (
+                    <span
+                      key={item}
+                      className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs sm:text-sm font-semibold text-slate-700 flex items-center gap-1.5"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -355,39 +380,39 @@ export default function Home() {
 
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-xl">
-                    🧹
+                    💦
                   </div>
                   <div>
-                    <h2 className="text-lg font-black text-slate-900">Peça seu Orçamento Online</h2>
-                    <p className="text-xs text-slate-500">Selecione e envie direto no WhatsApp em 1 clique:</p>
+                    <h2 className="text-lg font-black text-slate-900">Simule seu Orçamento</h2>
+                    <p className="text-xs text-slate-500">Escolha o item e receba a proposta no WhatsApp:</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSimulate} className="space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      1. Qual o tipo de serviço?
+                      1. Qual estofado você quer higienizar?
                     </label>
                     <div className="grid grid-cols-2 gap-2">
                       {[
-                        "Limpeza Residencial",
-                        "Higienização de Sofá",
-                        "Limpeza Pós-Obra",
-                        "Limpeza Comercial",
-                        "Limpeza de Vidros",
-                        "Outro Serviço",
-                      ].map((srv) => (
+                        "Sofá",
+                        "Colchão",
+                        "Bancos Automotivos",
+                        "Cadeiras / Poltronas",
+                        "Tapete",
+                        "Outro Item",
+                      ].map((item) => (
                         <button
-                          key={srv}
+                          key={item}
                           type="button"
-                          onClick={() => setSelectedService(srv)}
+                          onClick={() => setSelectedService(item)}
                           className={`text-left text-xs font-semibold px-3 py-2.5 rounded-xl border transition-all ${
-                            selectedService === srv
+                            selectedService === item
                               ? "border-[#0077D4] bg-sky-50 text-[#0077D4] font-bold shadow-sm"
                               : "border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50/50"
                           }`}
                         >
-                          {srv}
+                          {item}
                         </button>
                       ))}
                     </div>
@@ -395,21 +420,48 @@ export default function Home() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      2. Tipo de imóvel ou local?
+                      2. Qual o serviço desejado?
                     </label>
-                    <div className="grid grid-cols-4 gap-2">
-                      {["Apartamento", "Casa", "Escritório", "Outro"].map((type) => (
+                    <div className="grid grid-cols-2 gap-2">
+                      {[
+                        "Higienização Profunda",
+                        "Higienização + Impermeabilização",
+                        "Apenas Impermeabilização",
+                        "Remoção de Manchas/Odor",
+                      ].map((action) => (
                         <button
-                          key={type}
+                          key={action}
                           type="button"
-                          onClick={() => setSelectedType(type)}
-                          className={`text-center text-xs font-semibold py-2 rounded-xl border transition-all ${
-                            selectedType === type
+                          onClick={() => setSelectedAction(action)}
+                          className={`text-left text-xs font-semibold p-2.5 rounded-xl border transition-all ${
+                            selectedAction === action
                               ? "border-[#0077D4] bg-sky-50 text-[#0077D4] font-bold shadow-sm"
                               : "border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50/50"
                           }`}
                         >
-                          {type}
+                          {action}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                      3. Sua Cidade / Região:
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {["Brasília / DF", "Valparaíso / GO", "Entorno / GO"].map((loc) => (
+                        <button
+                          key={loc}
+                          type="button"
+                          onClick={() => setLocation(loc)}
+                          className={`text-center text-xs font-semibold py-2 rounded-xl border transition-all ${
+                            location === loc
+                              ? "border-[#0077D4] bg-sky-50 text-[#0077D4] font-bold shadow-sm"
+                              : "border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50/50"
+                          }`}
+                        >
+                          {loc}
                         </button>
                       ))}
                     </div>
@@ -417,13 +469,13 @@ export default function Home() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                      3. Alguma observação ou tamanho? (Opcional)
+                      4. Quantidade de lugares ou detalhes (Opcional):
                     </label>
                     <input
                       type="text"
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      placeholder="Ex: Sofá retrátil 3 lugares, apto 2 quartos em Águas Claras..."
+                      placeholder="Ex: Sofá retrátil 3 lugares linho cinza..."
                       className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-[#0077D4] focus:ring-2 focus:ring-sky-100 transition-all text-slate-800 placeholder-slate-400"
                     />
                   </div>
@@ -437,7 +489,7 @@ export default function Home() {
                   </button>
 
                   <p className="text-[11px] text-center text-slate-400">
-                    🔒 Sem compromisso • Atendimento imediato em horário comercial
+                    🔒 Sem compromisso • Atendimento imediato no WhatsApp
                   </p>
                 </form>
               </div>
@@ -446,42 +498,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── STATS STRIP ─── */}
+      {/* ─── HIGHLIGHT STRIP (Sofá, Colchão, Bancos, Cadeira) ─── */}
       <section className="bg-slate-900 text-white py-12 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-[#29ABE2] tracking-tight">+500</div>
-              <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Ambientes Limpos</div>
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold text-[#29ABE2] uppercase tracking-widest">
+              Destaques do nosso Instagram @gl_ultraclean
+            </span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="text-3xl mb-2">🛋️</div>
+              <div className="text-lg font-black text-white">Sofás</div>
+              <div className="text-xs text-slate-400 mt-1">Retráteis, Canto &amp; Couro</div>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">100%</div>
-              <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Garantia de Qualidade</div>
+            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="text-3xl mb-2">🛏️</div>
+              <div className="text-lg font-black text-white">Colchões</div>
+              <div className="text-xs text-slate-400 mt-1">Solteiro, Casal, Queen &amp; King</div>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-[#29ABE2] tracking-tight">5★</div>
-              <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Avaliação dos Clientes</div>
+            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="text-3xl mb-2">🚗</div>
+              <div className="text-lg font-black text-white">Bancos</div>
+              <div className="text-xs text-slate-400 mt-1">Automotivos (Tecido e Couro)</div>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">Todo DF</div>
-              <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Brasília e Regiões</div>
+            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="text-3xl mb-2">🪑</div>
+              <div className="text-lg font-black text-white">Cadeiras</div>
+              <div className="text-xs text-slate-400 mt-1">Jantar, Poltronas &amp; Escritório</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── SERVICES SECTION ─── */}
+      {/* ─── SERVICES SECTION (ALIGNED WITH INSTAGRAM) ─── */}
       <section id="servicos" className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <span className="text-xs font-black tracking-widest text-[#0077D4] uppercase bg-sky-100 px-3 py-1 rounded-full">
-              Excelência em Cada Detalhe
+              Higienização e Impermeabilização
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
               Nossos Serviços Especializados
             </h2>
             <p className="text-base sm:text-lg text-slate-600">
-              Conheça as soluções completas que oferecemos para sua residência ou empresa em Brasília.
+              Cuidado minucioso para devolver a beleza original e a saúde aos estofados da sua família.
             </p>
           </div>
 
@@ -517,12 +578,12 @@ export default function Home() {
                 </div>
 
                 <a
-                  href={getWhatsAppUrl(`Olá! Gostaria de um orçamento para o serviço de: ${s.title}`)}
+                  href={getWhatsAppUrl(`Olá! Gostaria de um orçamento para: ${s.title}`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 rounded-xl border-2 border-[#0077D4] text-[#0077D4] hover:bg-[#0077D4] hover:text-white font-bold text-sm text-center transition-all flex items-center justify-center gap-2 group"
                 >
-                  <span>Pedir Orçamento Deste Serviço</span>
+                  <span>Pedir Orçamento Deste Item</span>
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </a>
               </div>
@@ -532,16 +593,16 @@ export default function Home() {
           <div className="mt-14 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
               <span className="text-sm font-semibold text-slate-700">
-                Precisa de um serviço sob medida ou pacote recorrente?
+                Tem dúvidas sobre o tecido ou quer um pacote para vários estofados?
               </span>
               <a
-                href={getWhatsAppUrl("Olá! Gostaria de falar sobre um plano personalizado de limpeza.")}
+                href={getWhatsAppUrl("Olá! Gostaria de tirar dúvidas sobre a higienização dos meus estofados.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-whatsapp-primary px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2"
               >
                 <WhatsAppSvg className="w-4 h-4" />
-                <span>Conversar com nossa Equipe</span>
+                <span>Falar com o Especialista</span>
               </a>
             </div>
           </div>
@@ -554,13 +615,13 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 bg-pink-50 border border-pink-200 text-pink-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
               <InstagramSvg className="w-4 h-4 text-pink-600" />
-              <span>Vídeos Reais no Instagram</span>
+              <span>Vídeos Reais do Instagram</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              Veja a Transformação com Seus Próprios Olhos
+              Veja a Transformação dos Estofados
             </h2>
             <p className="text-base sm:text-lg text-slate-600">
-              Nada fala mais alto do que o resultado final. Assista abaixo aos vídeos dos serviços realizados pela GL Ultra Clean!
+              Confira vídeos reais direto do nosso perfil oficial no Instagram (@gl_ultraclean)!
             </p>
           </div>
 
@@ -626,7 +687,7 @@ export default function Home() {
               className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 text-white font-bold text-sm sm:text-base shadow-lg hover:opacity-95 transition-opacity"
             >
               <InstagramSvg className="w-5 h-5 fill-white" />
-              <span>Siga @gl_ultraclean para mais antes e depois</span>
+              <span>Siga @gl_ultraclean para conferir mais resultados</span>
             </a>
           </div>
         </div>
@@ -644,21 +705,21 @@ export default function Home() {
               Padrão GL Ultra Clean
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-              Por Que Confiar a Limpeza à Nossa Empresa?
+              Por Que Escolher a Nossa Higienização?
             </h2>
             <p className="text-base sm:text-lg text-slate-300">
-              Cuidado rigoroso, discrição e excelência técnica para superar suas expectativas.
+              Saúde, conforto e cuidado profissional para os estofados da sua casa.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-slate-800/80 rounded-2xl p-6 border border-slate-700/80">
               <div className="w-12 h-12 rounded-xl bg-sky-500/20 text-[#29ABE2] flex items-center justify-center text-2xl mb-4 font-bold">
-                ⏱️
+                🍃
               </div>
-              <h3 className="text-lg font-bold mb-2">Pontualidade Britânica</h3>
+              <h3 className="text-lg font-bold mb-2">Saúde &amp; Antialérgico</h3>
               <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Respeitamos rigorosamente os horários agendados e os prazos acordados. Sem atrasos nem imprevistos.
+                Elimina até 99,9% dos ácaros, bactérias e fungos causadores de crises respiratórias e alergias.
               </p>
             </div>
 
@@ -668,7 +729,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-bold mb-2">Produtos Certificados</h3>
               <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Utilizamos químicos profissionais autorizados pela Anvisa, que não danificam tecidos, pisos e são seguros para pets.
+                Químicos biodegradáveis e homologados pela Anvisa. Seguros para crianças, bebês e pets.
               </p>
             </div>
 
@@ -676,90 +737,20 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-sky-500/20 text-[#29ABE2] flex items-center justify-center text-2xl mb-4 font-bold">
                 🛡️
               </div>
-              <h3 className="text-lg font-bold mb-2">Equipe Confiável</h3>
+              <h3 className="text-lg font-bold mb-2">Preservação do Tecido</h3>
               <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Profissionais uniformizados, treinados com metodologia própria e postura discreta dentro da sua casa ou empresa.
+                Técnicas que restauram a maciez e as cores originais do tecido sem ressecar ou desfiar as fibras.
               </p>
             </div>
 
             <div className="bg-slate-800/80 rounded-2xl p-6 border border-slate-700/80">
               <div className="w-12 h-12 rounded-xl bg-sky-500/20 text-[#29ABE2] flex items-center justify-center text-2xl mb-4 font-bold">
-                💬
+                ⏱️
               </div>
-              <h3 className="text-lg font-bold mb-2">Orçamento Transparente</h3>
+              <h3 className="text-lg font-bold mb-2">Atendimento no Local</h3>
               <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Sem surpresas ou cobranças extras de última hora. O valor alinhado no WhatsApp é o valor final.
+                Vamos até sua residência ou empresa em Brasília-DF e entorno-GO com pontualidade e discrição.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TESTIMONIALS ─── */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-black tracking-widest text-[#0077D4] uppercase bg-sky-100 px-3 py-1 rounded-full">
-              Depoimentos de Quem Já Contratou
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              O Que Nossos Clientes Dizem
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex text-amber-400 text-base mb-4">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic mb-6">
-                  &ldquo;A equipe da GL Ultra Clean salvou meu sofá! As crianças tinham derramado suco e chocolate, parecia que não ia sair. Ficou como novo e com um cheiro maravilhoso.&rdquo;
-                </p>
-              </div>
-              <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
-                <div className="w-10 h-10 rounded-full bg-sky-100 text-[#0077D4] flex items-center justify-center font-bold text-sm">
-                  MR
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-slate-900">Mariana Ribeiro</div>
-                  <div className="text-xs text-slate-500">Asa Norte - Brasília</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex text-amber-400 text-base mb-4">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic mb-6">
-                  &ldquo;Contratei a limpeza pós-obra antes de me mudar para o novo apartamento. O piso porcelanato estava cheio de poeira e cola de rodapé. Entregaram tudo brilhando no mesmo dia!&rdquo;
-                </p>
-              </div>
-              <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
-                <div className="w-10 h-10 rounded-full bg-sky-100 text-[#0077D4] flex items-center justify-center font-bold text-sm">
-                  CS
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-slate-900">Carlos Silva</div>
-                  <div className="text-xs text-slate-500">Águas Claras - DF</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex text-amber-400 text-base mb-4">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic mb-6">
-                  &ldquo;Atendimento impecável no WhatsApp desde o primeiro contato. Foram super pontuais e os vidros da minha clínica ficaram 100% transparentes. Já fechei limpeza mensal.&rdquo;
-                </p>
-              </div>
-              <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
-                <div className="w-10 h-10 rounded-full bg-sky-100 text-[#0077D4] flex items-center justify-center font-bold text-sm">
-                  DF
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-slate-900">Dra. Fernanda L.</div>
-                  <div className="text-xs text-slate-500">Lago Sul - Brasília</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -821,16 +812,16 @@ export default function Home() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-            Pronto para ter seu espaço limpo de verdade?
+            Pronto para ter seu estofado renovado e higienizado?
           </h2>
 
           <p className="text-base sm:text-xl text-sky-100 max-w-2xl mx-auto leading-relaxed">
-            Fale conosco agora pelo WhatsApp, tire suas dúvidas e agende o melhor dia para você. Sem burocracia e com atendimento rápido!
+            Fale conosco agora pelo WhatsApp, mande uma foto do seu estofado e receba seu orçamento em poucos minutos!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <a
-              href={getWhatsAppUrl("Olá! Gostaria de um orçamento imediato com a GL Ultra Clean.")}
+              href={getWhatsAppUrl("Olá! Gostaria de um orçamento para higienizar meus estofados.")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp-primary px-9 py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-3 shadow-2xl w-full sm:w-auto"
@@ -864,7 +855,7 @@ export default function Home() {
                 height={50}
                 className="h-10 w-auto object-contain opacity-90"
               />
-              <span className="text-xs text-slate-400">Serviços de Limpeza de Alta Performance em Brasília & DF</span>
+              <span className="text-xs text-slate-400">Higienização e Impermeabilização de Estofados • Brasília-DF e entorno-GO</span>
             </div>
 
             {/* Links */}
@@ -902,7 +893,7 @@ export default function Home() {
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <p>© {new Date().getFullYear()} GL Ultra Clean. Todos os direitos reservados.</p>
-            <p>Brasília - Distrito Federal</p>
+            <p>Brasília-DF e entorno-GO (Valparaíso)</p>
           </div>
         </div>
       </footer>
@@ -911,18 +902,18 @@ export default function Home() {
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
         {/* Helper tooltip */}
         <a
-          href={getWhatsAppUrl("Olá! Gostaria de tirar uma dúvida sobre os serviços de limpeza.")}
+          href={getWhatsAppUrl("Olá! Gostaria de tirar uma dúvida sobre higienização de estofados.")}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden sm:flex items-center gap-2 bg-white text-slate-800 text-xs font-bold px-4 py-2.5 rounded-full shadow-xl border border-slate-200 hover:text-[#0077D4] transition-all hover:scale-105"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Orçamento Online no WhatsApp</span>
+          <span>Orçamento Rápido no WhatsApp</span>
         </a>
 
         {/* Pulse button */}
         <a
-          href={getWhatsAppUrl("Olá! Gostaria de um orçamento.")}
+          href={getWhatsAppUrl("Olá! Gostaria de um orçamento para estofados.")}
           target="_blank"
           rel="noopener noreferrer"
           className="w-16 h-16 rounded-full btn-whatsapp-primary flex items-center justify-center whatsapp-pulse shadow-2xl transition-transform hover:scale-110 active:scale-95"

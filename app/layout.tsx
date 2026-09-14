@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GL Ultra Clean — Limpeza Profissional em Brasília",
+  title: "GL ULTRA CLEAN | Higienização e Impermeabilização de Estofados",
   description:
-    "Serviços de limpeza profissional residencial e comercial em Brasília e DF. Qualidade, pontualidade e resultado impecável. Orçamento grátis pelo WhatsApp.",
-  keywords: "limpeza profissional, limpeza residencial, limpeza comercial, limpeza de vidros, limpeza de estofados, Brasília, DF",
+    "Especialistas em higienização e impermeabilização de sofás, colchões, bancos automotivos e cadeiras em Brasília-DF e Entorno-GO (Valparaíso). Saúde e conforto para sua família. Orçamento rápido pelo WhatsApp.",
+  keywords: "higienização de estofados, limpeza de sofá, impermeabilização de sofá, higienização de colchão, bancos automotivos, Valparaíso GO, Brasília DF, entorno GO",
   openGraph: {
-    title: "GL Ultra Clean — Limpeza Profissional",
-    description: "Resultado impecável em cada limpeza. Solicite seu orçamento pelo WhatsApp.",
+    title: "GL ULTRA CLEAN | Higienização e Impermeabilização de Estofados",
+    description: "Saúde e conforto para sua família. Solicite seu orçamento pelo WhatsApp.",
     type: "website",
     locale: "pt_BR",
   },
