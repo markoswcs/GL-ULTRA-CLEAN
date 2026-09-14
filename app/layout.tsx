@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "GL Ultra Clean — Limpeza Profissional em Brasília",
   description:
-    "Serviços de limpeza profissional residencial e comercial em Brasília e região. Qualidade, pontualidade e resultado impecável. Solicite um orçamento pelo WhatsApp.",
+    "Serviços de limpeza profissional residencial e comercial em Brasília e DF. Qualidade, pontualidade e resultado impecável. Orçamento grátis pelo WhatsApp.",
   keywords: "limpeza profissional, limpeza residencial, limpeza comercial, limpeza de vidros, limpeza de estofados, Brasília, DF",
   openGraph: {
     title: "GL Ultra Clean — Limpeza Profissional",
@@ -16,16 +16,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
